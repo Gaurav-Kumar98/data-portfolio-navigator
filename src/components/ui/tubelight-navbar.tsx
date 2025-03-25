@@ -15,11 +15,26 @@ interface NavItem {
 interface NavBarProps {
   items: NavItem[]
   className?: string
+  activeTab?: string
 }
 
-export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
+export function NavBar({ items, className, activeTab }: NavBarProps) {
+  const [localActiveTab, setLocalActiveTab] = useState(items[0].name)
   const [isMobile, setIsMobile] = useState(false)
+
+  // Update local state when prop changes
+  useEffect(() => {
+    if (activeTab) {
+      const matchingItem = items.find(
+        item => item.url === `#${activeTab}` || 
+        // Convert to lowercase for case-insensitive comparison
+        item.name.toLowerCase() === activeTab.toLowerCase()
+      );
+      if (matchingItem) {
+        setLocalActiveTab(matchingItem.name);
+      }
+    }
+  }, [activeTab, items]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,13 +56,13 @@ export function NavBar({ items, className }: NavBarProps) {
       <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon
-          const isActive = activeTab === item.name
+          const isActive = localActiveTab === item.name
 
           return (
             <a
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={() => setLocalActiveTab(item.name)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
