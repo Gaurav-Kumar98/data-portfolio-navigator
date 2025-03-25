@@ -19,7 +19,7 @@ const App = () => (
         <div className="fixed top-4 right-4 z-50">
           <ThemeToggle />
         </div>
-        <BrowserRouter>
+        <BrowserRouter basename="/data-portfolio-navigator">
           <Routes>
             <Route path="/" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
