@@ -1,6 +1,5 @@
 
 import { TestimonialCarousel, Testimonial } from '@/components/ui/testimonial';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Section } from '@/components/ui/section';
 
 const TESTIMONIALS_DATA: Testimonial[] = [
