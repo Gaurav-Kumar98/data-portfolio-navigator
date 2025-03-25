@@ -1,4 +1,3 @@
-
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowUpRight, Github } from 'lucide-react';
@@ -13,6 +12,7 @@ interface ProjectItem {
   image: string;
   liveUrl?: string;
   githubUrl?: string;
+  period: string;
 }
 
 const Projects = () => {
@@ -40,34 +40,29 @@ const Projects = () => {
 
   const projects: ProjectItem[] = [
     {
-      title: "Data Pipeline Automation",
-      description: "Developed an automated ETL pipeline using Apache Airflow to process and transform large datasets from multiple sources.",
-      tags: ["Apache Airflow", "Python", "AWS", "ETL"],
+      title: "Real-Time Activity Tracker",
+      description: "Designed and deployed a real-time data pipeline using Apache Kafka, Spark Structured Streaming, and Flask to ingest and classify sensor data with end-to-end latency under 2 seconds.",
+      tags: ["Kafka", "Spark", "Flask", "Grafana", "TimescaleDB", "Docker", "Git"],
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80",
+      period: "January 2025 - Present",
       liveUrl: "#",
       githubUrl: "#"
     },
     {
-      title: "Real-time Analytics Dashboard",
-      description: "Created a real-time analytics dashboard to visualize key performance indicators and business metrics.",
-      tags: ["Kafka", "Spark", "React", "D3.js"],
+      title: "TicketAssist AI",
+      description: "A project leveraging LLM technology and vector databases to automate ticket classification, prioritization, and resolution suggestion for IT support teams.",
+      tags: ["LangChain", "ChromaDB", "Ollama", "FastAPI"],
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80",
+      period: "November 2024 - January 2025",
       liveUrl: "#",
       githubUrl: "#"
     },
     {
-      title: "Data Quality Framework",
-      description: "Implemented a comprehensive data quality framework to ensure data accuracy, completeness, and consistency.",
-      tags: ["Python", "SQL", "Great Expectations", "dbt"],
+      title: "EcoPulse Dashboard",
+      description: "An interactive dashboard for monitoring environmental metrics and sustainability KPIs, powered by Azure OpenAI for natural language querying and insights generation.",
+      tags: ["FastAPI", "LangChain", "Azure OpenAI", "PowerBI"],
       image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80",
-      liveUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      title: "Cloud Data Warehouse",
-      description: "Designed and deployed a cloud-based data warehouse solution to centralize and optimize data access.",
-      tags: ["Snowflake", "AWS", "Terraform", "SQL"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
+      period: "December 2024 - January 2025",
       liveUrl: "#",
       githubUrl: "#"
     }
@@ -89,11 +84,11 @@ const Projects = () => {
             </span>
           </motion.div>
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-6">
-            Featured Work
+            Personal Projects
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground">
-            Here are some of the projects I've worked on that showcase my skills and expertise 
-            in data engineering and analytics.
+            Here are some of the personal projects I've built to explore new technologies
+            and showcase my skills in data engineering and AI.
           </motion.p>
         </motion.div>
 
@@ -114,7 +109,10 @@ const Projects = () => {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-semibold">{project.title}</h3>
+                    <span className="text-xs text-muted-foreground">{project.period}</span>
+                  </div>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, tagIndex) => (
@@ -124,16 +122,20 @@ const Projects = () => {
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="px-6 pb-6 pt-0 flex gap-4">
+                <CardFooter className="px-6 pb-6 pt-0 flex gap-4 pointer-events-auto">
                   {project.liveUrl && (
-                    <Button variant="default" size="sm" className="button-hover">
-                      View Project <ArrowUpRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="pointer-events-auto">
+                      <Button variant="default" size="sm" className="button-hover pointer-events-auto">
+                        View Project <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </a>
                   )}
                   {project.githubUrl && (
-                    <Button variant="outline" size="sm" className="button-hover">
-                      <Github className="mr-2 h-4 w-4" /> Code
-                    </Button>
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="pointer-events-auto">
+                      <Button variant="outline" size="sm" className="button-hover pointer-events-auto">
+                        <Github className="mr-2 h-4 w-4" /> Code
+                      </Button>
+                    </a>
                   )}
                 </CardFooter>
               </Card>

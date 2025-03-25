@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,6 +18,9 @@ export default {
 			}
 		},
 		extend: {
+			maxWidth: {
+				'container': '1200px',
+			},
 			fontFamily: {
 				sans: ["Inter", "sans-serif"],
 				mono: ["JetBrains Mono", "monospace"],
@@ -113,6 +115,10 @@ export default {
 				float: {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				marquee: {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(calc(-100% - var(--gap)))' }
 				}
 			},
 			animation: {
@@ -125,7 +131,8 @@ export default {
 				'slide-in': 'slide-in 0.3s ease-out',
 				'slide-out': 'slide-out 0.3s ease-out',
 				'pulse-slow': 'pulse-slow 3s infinite ease-in-out',
-				'float': 'float 6s infinite ease-in-out'
+				'float': 'float 6s infinite ease-in-out',
+				'marquee': 'marquee var(--duration) linear infinite'
 			}
 		}
 	},

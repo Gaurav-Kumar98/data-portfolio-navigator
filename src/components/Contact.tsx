@@ -1,4 +1,3 @@
-
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -95,7 +94,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-1">Email</h3>
-                <p className="text-muted-foreground">contact@yourdomain.com</p>
+                <p className="text-muted-foreground">gk0415439@gmail.com</p>
               </div>
             </motion.div>
 
@@ -105,7 +104,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-1">Phone</h3>
-                <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                <p className="text-muted-foreground">+917014938338</p>
               </div>
             </motion.div>
 
@@ -115,7 +114,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-1">Location</h3>
-                <p className="text-muted-foreground">San Francisco, CA</p>
+                <p className="text-muted-foreground">Jaipur, Rajasthan</p>
               </div>
             </motion.div>
           </motion.div>
@@ -124,15 +123,15 @@ const Contact = () => {
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="lg:col-span-3"
+            className="lg:col-span-3 pointer-events-auto"
           >
             <motion.form 
               variants={itemVariants} 
               onSubmit={handleSubmit}
-              className="space-y-6 p-6 bg-background/50 backdrop-blur-sm rounded-lg border border-border/30"
+              className="space-y-6 p-6 bg-background/50 backdrop-blur-sm rounded-lg border border-border/30 pointer-events-auto"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
+                <div className="space-y-2 pointer-events-auto">
                   <label htmlFor="name" className="text-sm font-medium">
                     Your Name
                   </label>
@@ -140,10 +139,10 @@ const Contact = () => {
                     id="name" 
                     placeholder="John Doe" 
                     required 
-                    className="bg-background/50"
+                    className="bg-background/50 pointer-events-auto"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 pointer-events-auto">
                   <label htmlFor="email" className="text-sm font-medium">
                     Your Email
                   </label>
@@ -152,11 +151,11 @@ const Contact = () => {
                     type="email" 
                     placeholder="john@example.com" 
                     required 
-                    className="bg-background/50"
+                    className="bg-background/50 pointer-events-auto"
                   />
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 pointer-events-auto">
                 <label htmlFor="subject" className="text-sm font-medium">
                   Subject
                 </label>
@@ -164,10 +163,10 @@ const Contact = () => {
                   id="subject" 
                   placeholder="How can I help you?" 
                   required 
-                  className="bg-background/50"
+                  className="bg-background/50 pointer-events-auto"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 pointer-events-auto">
                 <label htmlFor="message" className="text-sm font-medium">
                   Message
                 </label>
@@ -175,12 +174,12 @@ const Contact = () => {
                   id="message" 
                   placeholder="Your message here..." 
                   required 
-                  className="min-h-32 bg-background/50"
+                  className="min-h-32 bg-background/50 pointer-events-auto"
                 />
               </div>
               <Button 
                 type="submit" 
-                className="w-full button-hover" 
+                className="w-full button-hover pointer-events-auto" 
                 disabled={isSubmitting || isSubmitted}
               >
                 {isSubmitting ? (

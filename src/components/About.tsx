@@ -1,4 +1,3 @@
-
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { BadgeCheck, Database, FileCode, LineChart, Server, Users } from 'lucide-react';
@@ -31,32 +30,32 @@ const About = () => {
     {
       icon: <Database size={24} className="text-primary" />,
       title: "Data Pipeline Development",
-      description: "Building efficient ETL processes and data workflows to ensure reliable data processing."
+      description: "Building efficient ETL processes and data workflows to ensure reliable data processing and transformation."
     },
     {
       icon: <LineChart size={24} className="text-primary" />,
-      title: "Data Visualization",
-      description: "Creating insightful dashboards and visualizations that make complex data accessible."
+      title: "AI & LLM Integration",
+      description: "Implementing advanced AI and large language models for intelligent data processing and automation solutions."
     },
     {
       icon: <Server size={24} className="text-primary" />,
-      title: "Data Architecture",
-      description: "Designing scalable data infrastructures that support business growth and analytics needs."
+      title: "Cloud Architecture",
+      description: "Designing scalable Azure cloud infrastructures supporting modern data engineering needs and business growth."
     },
     {
       icon: <FileCode size={24} className="text-primary" />,
-      title: "Data Engineering Solutions",
-      description: "Developing custom data solutions tailored to specific business requirements."
+      title: "Document Intelligence",
+      description: "Building intelligent document processing systems with AI to extract, analyze, and utilize unstructured data."
     },
     {
       icon: <Users size={24} className="text-primary" />,
-      title: "Team Collaboration",
-      description: "Working effectively with data scientists, analysts, and stakeholders to deliver results."
+      title: "Conversational AI",
+      description: "Developing chatbot solutions and conversational interfaces with vector databases for enhanced user experiences."
     },
     {
       icon: <BadgeCheck size={24} className="text-primary" />,
-      title: "Data Quality Management",
-      description: "Implementing processes to ensure data accuracy, consistency, and reliability."
+      title: "Data Quality Optimization",
+      description: "Implementing processes and tools to ensure data accuracy, consistency, and reliability throughout systems."
     }
   ];
 
@@ -70,28 +69,20 @@ const About = () => {
           animate={isInView ? "visible" : "hidden"}
           className="max-w-4xl mx-auto mb-16"
         >
-          <div className="flex flex-col md:flex-row items-center gap-10 mb-10">
-            <motion.div variants={itemVariants} className="md:w-1/3">
-              <img 
-                src="/Profile photo.jpg" 
-                alt="Profile" 
-                className="rounded-lg shadow-xl object-cover w-full max-w-[280px] h-auto" 
-              />
-            </motion.div>
-            
-            <div className="md:w-2/3">
-              <motion.div variants={itemVariants} className="inline-block mb-3">
+          <div className="flex flex-col mb-10 text-center">
+            <div className="w-full">
+              <motion.div variants={itemVariants} className="flex justify-center mb-3">
                 <span className="text-sm font-medium px-4 py-1.5 rounded-full bg-primary/10 text-primary">
                   About Me
                 </span>
               </motion.div>
               <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-6">
-                Passionate about transforming data into value
+                Transforming Data into Actionable Insights
               </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg text-muted-foreground">
-                With 5 years of experience in data engineering, I've developed expertise in building
-                robust data pipelines, creating insightful visualizations, and implementing efficient
-                data solutions for diverse business needs.
+              <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                With 4+ years of experience in data engineering, I've developed expertise in building
+                robust data pipelines and innovative AI solutions. I specialize in leveraging cloud technologies 
+                and modern data architecture to solve complex business challenges and drive data-driven decision making.
               </motion.p>
             </div>
           </div>

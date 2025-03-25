@@ -1,4 +1,3 @@
-
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -37,39 +36,57 @@ const Skills = () => {
 
   const skillCategories: SkillCategory[] = [
     {
-      name: "Data Processing",
+      name: "Core Technologies",
       skills: [
         { name: "Python", level: 90 },
         { name: "SQL", level: 85 },
-        { name: "Apache Spark", level: 80 },
-        { name: "Pandas", level: 90 }
+        { name: "ETL", level: 90 },
+        { name: "Data Engineering", level: 85 }
       ]
     },
     {
-      name: "Data Storage",
+      name: "Big Data & Processing",
       skills: [
-        { name: "PostgreSQL", level: 85 },
-        { name: "MongoDB", level: 75 },
-        { name: "Snowflake", level: 80 },
-        { name: "Amazon S3", level: 85 }
+        { name: "Apache Spark", level: 85 },
+        { name: "PySpark", level: 85 },
+        { name: "Apache Kafka", level: 80 },
+        { name: "Azure Databricks", level: 85 }
       ]
     },
     {
-      name: "Data Orchestration",
+      name: "Data Orchestration & Pipelines",
       skills: [
         { name: "Apache Airflow", level: 85 },
-        { name: "dbt", level: 80 },
-        { name: "Prefect", level: 75 },
-        { name: "Docker", level: 80 }
+        { name: "Azure Data Factory", level: 80 },
+        { name: "Airbyte", level: 75 },
+        { name: "Azure Data Lake", level: 80 }
       ]
     },
     {
-      name: "Cloud Platforms",
+      name: "AI & Advanced Technologies",
       skills: [
-        { name: "AWS", level: 85 },
-        { name: "GCP", level: 75 },
-        { name: "Azure", level: 70 },
-        { name: "Kubernetes", level: 65 }
+        { name: "Generative AI", level: 75 },
+        { name: "LLM", level: 75 },
+        { name: "RAG", level: 70 },
+        { name: "LangChain", level: 75 }
+      ]
+    },
+    {
+      name: "Development & Operations",
+      skills: [
+        { name: "Docker", level: 80 },
+        { name: "Git", level: 85 },
+        { name: "Agile", level: 80 },
+        { name: "FastAPI", level: 75 }
+      ]
+    },
+    {
+      name: "Specialized Tools",
+      skills: [
+        { name: "Vector DB", level: 70 },
+        { name: "Ollama", level: 70 },
+        { name: "Document Intelligence", level: 75 },
+        { name: "Azure OpenAI", level: 75 }
       ]
     }
   ];
@@ -94,7 +111,7 @@ const Skills = () => {
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground">
             A comprehensive overview of my technical skills and proficiency levels 
-            across various data engineering technologies and tools.
+            across data engineering, cloud platforms, and AI technologies.
           </motion.p>
         </motion.div>
 
@@ -102,7 +119,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {skillCategories.map((category, categoryIndex) => (
             <motion.div key={categoryIndex} variants={itemVariants}>

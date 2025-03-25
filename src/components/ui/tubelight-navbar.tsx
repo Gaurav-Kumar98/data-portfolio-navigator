@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useEffect, useState } from "react"
@@ -49,7 +48,7 @@ export function NavBar({ items, className, activeTab }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6 pointer-events-none",
         className,
       )}
     >
@@ -64,7 +63,7 @@ export function NavBar({ items, className, activeTab }: NavBarProps) {
               href={item.url}
               onClick={() => setLocalActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors pointer-events-auto",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary",
               )}

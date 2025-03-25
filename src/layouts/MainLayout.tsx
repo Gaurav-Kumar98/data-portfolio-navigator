@@ -1,5 +1,4 @@
-
-import { Home, User, Briefcase, Code, Mail, MessageSquare } from 'lucide-react';
+import { Home, User, Briefcase, Code, Mail, MessageSquareQuote } from 'lucide-react';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import BackgroundAnimation from '@/components/BackgroundAnimation';
 import { useEffect, useState } from 'react';
@@ -16,7 +15,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     { name: 'About', url: '#about', icon: User },
     { name: 'Experience', url: '#experience', icon: Briefcase },
     { name: 'Projects', url: '#projects', icon: Code },
-    { name: 'Testimonials', url: '#testimonials', icon: MessageSquare },
+    { name: 'Testimonials', url: '#testimonials', icon: MessageSquareQuote },
     { name: 'Contact', url: '#contact', icon: Mail }
   ];
 
@@ -48,7 +47,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <BackgroundAnimation />
+      {activeSection === 'home' && <BackgroundAnimation />}
       <NavBar 
         items={navItems} 
         activeTab={activeSection}

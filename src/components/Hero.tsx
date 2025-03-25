@@ -1,7 +1,7 @@
-
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const fadeInUp = {
@@ -23,6 +23,12 @@ const Hero = () => {
     }
   };
 
+  // Social media and contact URLs
+  const github = "https://github.com/Gaurav-Kumar98";
+  const linkedin = "https://www.linkedin.com/in/gauravkumar98/";
+  const email = "gk0415439@gmail.com";
+  const phone = "+917014938338";
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 pb-20">
       <div className="container mx-auto px-4 md:px-6">
@@ -33,54 +39,64 @@ const Hero = () => {
           variants={staggerChildren}
         >
           <motion.div 
-            className="rounded-full bg-accent/50 p-2 mb-8 backdrop-blur-sm"
+            className="mb-8"
             variants={fadeInUp}
           >
-            <div className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-              Data Engineer with 5 Years of Experience
-            </div>
+            <img 
+              src="/Profile photo.jpg" 
+              alt="Gaurav Kumar" 
+              className="w-48 h-48 rounded-full object-cover border-2 border-primary/20 shadow-lg"
+            />
           </motion.div>
 
           <motion.h1 
             className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
             variants={fadeInUp}
           >
-            Transforming Data into
-            <span className="text-primary"> Actionable Insights</span>
+            I'm <span className="text-primary">Gaurav Kumar</span>, <br />
+            Senior Data Engineer
           </motion.h1>
 
           <motion.p 
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
             variants={fadeInUp}
           >
-            I specialize in building robust data pipelines, creating insightful visualizations, 
-            and developing data-driven solutions that help businesses make informed decisions.
+            I specialize in building robust data pipelines, AI-powered solutions, 
+            and cloud-based architectures that transform raw data into actionable insights.
           </motion.p>
 
           <motion.div 
-            className="flex flex-wrap gap-4 justify-center mb-12"
+            className="flex flex-wrap gap-4 justify-center mb-12 pointer-events-auto"
             variants={fadeInUp}
           >
-            <Button size="lg" className="button-hover">
-              View Projects <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="lg" className="button-hover">
-              Contact Me
-            </Button>
+            <a href="#projects" className="inline-block pointer-events-auto">
+              <Button size="lg" className="button-hover pointer-events-auto">
+                View Projects <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </a>
+            
+            <a href="#contact" className="inline-block pointer-events-auto">
+              <Button variant="outline" size="lg" className="button-hover pointer-events-auto">
+                Contact Me
+              </Button>
+            </a>
           </motion.div>
 
           <motion.div 
-            className="flex items-center gap-6"
+            className="flex items-center gap-6 pointer-events-auto"
             variants={fadeInUp}
           >
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href={github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors pointer-events-auto">
               <Github size={24} />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors pointer-events-auto">
               <Linkedin size={24} />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              <Twitter size={24} />
+            <a href={`mailto:${email}`} className="text-muted-foreground hover:text-primary transition-colors pointer-events-auto">
+              <Mail size={24} />
+            </a>
+            <a href={`tel:${phone}`} className="text-muted-foreground hover:text-primary transition-colors pointer-events-auto">
+              <Phone size={24} />
             </a>
           </motion.div>
         </motion.div>
