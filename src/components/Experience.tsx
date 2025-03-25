@@ -6,6 +6,7 @@ const Experience = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
   const [selectedCompany, setSelectedCompany] = useState("McKinsey & Company");
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,10 +36,10 @@ const Experience = () => {
       period: "October 2024 - March 2025",
       location: "Remote",
       achievements: [
-        "Led the digital transformation of legacy data systems to cloud-native solutions, resulting in a 60% reduction in operational costs and 35% improvement in data processing efficiency",
-        "Architected and implemented real-time data streaming pipelines using Kafka and Spark Structured Streaming to enable instant analytics on customer behavior data",
-        "Designed and deployed a comprehensive data governance framework that ensured compliance with global regulations while maintaining data accessibility",
-        "Mentored junior data engineers and established best practices for data modeling and ETL development across the organization"
+        "Transformed systems to cloud, cutting costs by 60% and boosting efficiency by 35%.",
+        "Built Kafka and Spark streaming for instant analytics.",
+        "Established governance for compliance and accessibility.",
+        "Mentored engineers and standardized ETL practices."
       ]
     },
     {
@@ -49,11 +50,10 @@ const Experience = () => {
       period: "October 2023 - March 2025",
       location: "Jaipur, Rajasthan",
       achievements: [
-        "Optimized Data Infrastructure for McKinsey's Periscope Price Tool: Supported and optimized data pipelines for the tool by designing scalable workflows that seamlessly processed diverse real-time market and consumer data, enabling dynamic pricing insights and driving revenue growth.",
-        "Built a flexible document parser: Leveraged Python, Azure Document Intelligence, and GPT-4 to extract payroll data from diverse document layouts, employing robust data models and advanced error handling for scalable processing.",
-        "Developed dynamic system architecture: Designed a modular template matching solution to adapt to varying payroll formats, ensuring seamless integration of new document types and enhancing overall system flexibility.",
-        "Built an intelligent chatbot solution: Conceptualized and deployed a multi-functional chatbot for invoice automation using Langchain and Vanna.ai, integrating a vector database and text-to-SQL functionality to streamline user support and query resolution.",
-        "Enhanced collaboration and quality: Utilized Git for version control and rigorous testing, incorporating user feedback to continuously refine both solutions and maintain high code quality."
+        "Developed a flexible document parser using Python, Azure Document Intelligence, and GPT-4 for scalable payroll data extraction.",
+        "Engineered a modular template matching solution to handle diverse payroll formats and boost system flexibility.",
+        "Created an invoice automation chatbot with Langchain and Vanna.ai, integrating a vector database and text-to-SQL for streamlined support.",
+        "Enhanced collaboration with Git, rigorous testing, and user feedback to maintain high-quality code."
       ]
     },
     {
@@ -64,10 +64,10 @@ const Experience = () => {
       period: "October 2022 - September 2023",
       location: "Jaipur, Rajasthan",
       achievements: [
-        "Engineered robust data pipelines: Leveraged Airbyte, Databricks, and Azure Data Factory to extract data from diverse REST APIs and standardize it into FHIR format, reducing extraction time by 20% and enhancing data quality for healthcare analytics.",
-        "Streamlined workflow orchestration: Utilized Airflow DAG factories, Kubernetes, and Docker to automate multi-tenant data processing and alerting, cutting tenant onboarding time by 50% and boosting deployment efficiency by 25%.",
-        "Optimized ETL processes for actionable insights: Employed Azure Functions and incremental loading techniques to transform data and calculate KPIs, driving a 40% improvement in decision-making efficiency while reducing data redundancy by 25%.",
-        "Implemented agile engineering practices: Adopted best practices and agile methodologies via Azure DevOps (boards and repos) and open-source tools, ensuring continuous process improvement and effective cross-team collaboration."
+        "Built data pipelines with Airbyte, Databricks, and Azure Data Factory to standardize REST API data into FHIR, cutting extraction time by 20%.",
+        "Automated multi-tenant workflows using Airflow, Kubernetes, and Docker, reducing onboarding time by 50% and boosting deployment by 25%.",
+        "Enhanced ETL processes with Azure Functions and incremental loading to improve KPIs, increasing decision-making efficiency by 40% and lowering redundancy by 25%.",
+        "Adopted agile practices with Azure DevOps and open-source tools for continuous improvement and effective team collaboration."
       ]
     },
     {
@@ -78,9 +78,9 @@ const Experience = () => {
       period: "October 2020 - September 2022",
       location: "Jaipur, Rajasthan",
       achievements: [
-        "Modernized ETL workflows: Architected the migration from an on-premise SQL data warehouse to Azure Cloud using Synapse Pipelines, Data Lake Gen2, and Databricks for seamless SAP data ingestion.",
-        "Enhanced processing efficiency: Transformed legacy SQL stored procedures into optimized PySpark scripts, leveraging in-memory computation and Delta Lake to reduce pipeline runtimes to 5–8 minutes.",
-        "Empowered data-driven insights: Redesigned data models with Fact-Dimension modeling on Azure Synapse, enabling real-time Power BI reporting and the development of actionable KPIs."
+        "Migrated on-prem SQL warehouse to Azure Cloud using Synapse, Data Lake Gen2, and Databricks for seamless SAP ingestion.",
+        "Converted SQL procedures to optimized PySpark with in-memory computation and Delta Lake, reducing runtimes to 5-8 minutes.",
+        "Redesigned data models with Fact-Dimension modeling on Azure Synapse for real-time Power BI reporting and actionable KPIs."
       ]
     }
   ];
@@ -103,22 +103,50 @@ const Experience = () => {
           </motion.p>
 
           <div className="flex flex-col md:flex-row gap-10">
-            {/* Companies list */}
-            <motion.div variants={itemVariants} className="flex flex-row md:flex-col gap-4 md:w-1/4">
-              {companies.map((company) => (
-                <div 
-                  key={company.name}
-                  className={`flex items-center gap-2 p-3 rounded-md ${company.name === selectedCompany ? 'bg-muted text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors cursor-pointer`}
-                  onClick={() => setSelectedCompany(company.name)}
-                >
-                  <img src={company.logo} alt={company.name} className="w-12 h-12 object-contain" />
-                  <span className="font-medium">{company.name}</span>
+            {/* Companies list with animated line */}
+            <motion.div variants={itemVariants} className="flex flex-row md:flex-col gap-4 md:w-1/3 relative">
+              {/* Company container with left padding for the line */}
+              <div className="relative md:pl-6 md:border-l-0 w-full">
+                {/* Vertical line - fixed position and height */}
+                <div className="hidden md:block absolute left-0 top-0 w-0.5 h-full bg-border/30">
+                  {/* Animated highlight with fixed height */}
+                  <motion.div
+                    className="absolute w-full bg-primary"
+                    initial={{ top: 0 }}
+                    animate={{
+                      top: `${selectedIndex * (100 / companies.length)}%`
+                    }}
+                    style={{ height: `${100 / companies.length}%` }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30
+                    }}
+                  />
                 </div>
-              ))}
+                
+                {companies.map((company, index) => (
+                  <div 
+                    key={company.name}
+                    className={`flex items-center gap-4 p-3 pl-8 rounded-md mb-2 ${
+                      company.name === selectedCompany 
+                        ? 'bg-muted text-primary' 
+                        : 'text-muted-foreground hover:text-foreground'
+                    } transition-colors cursor-pointer`}
+                    onClick={() => {
+                      setSelectedCompany(company.name);
+                      setSelectedIndex(index);
+                    }}
+                  >
+                    <img src={company.logo} alt={company.name} className="w-12 h-12 object-contain" />
+                    <span className="font-medium">{company.name}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             {/* Selected company details */}
-            <motion.div variants={containerVariants} className="md:w-3/4">
+            <motion.div variants={containerVariants} className="md:w-2/3">
               {companies.filter(c => c.name === selectedCompany).map((company) => (
                 <div key={`details-${company.name}`}>
                   <motion.div variants={itemVariants} className="mb-6">

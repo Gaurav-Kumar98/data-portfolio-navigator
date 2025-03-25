@@ -80,7 +80,7 @@ const About = () => {
                 Transforming Data into Actionable Insights
               </motion.h2>
               <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                With 4+ years of experience in data engineering, I've developed expertise in building
+                With extensive experience in data engineering, I've developed expertise in building
                 robust data pipelines and innovative AI solutions. I specialize in leveraging cloud technologies 
                 and modern data architecture to solve complex business challenges and drive data-driven decision making.
               </motion.p>
