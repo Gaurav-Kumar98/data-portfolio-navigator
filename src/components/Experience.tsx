@@ -30,7 +30,7 @@ const Experience = () => {
   const companies = [
     {
       name: "McKinsey & Company",
-      logo: "/images/companies/McK.jpg",
+      logo: "./images/companies/McK.jpg",
       role: "Senior Data Engineer",
       at: "@ McKinsey & Company",
       period: "October 2024 - March 2025",
@@ -44,7 +44,7 @@ const Experience = () => {
     },
     {
       name: "Pratham Software",
-      logo: "/images/companies/PSI.png",
+      logo: "./images/companies/PSI.png",
       role: "Senior Data Engineer",
       at: "@ Pratham Software",
       period: "October 2023 - March 2025",
@@ -58,7 +58,7 @@ const Experience = () => {
     },
     {
       name: "Mandelbulb Technologies",
-      logo: "/images/companies/MBTECH.jpeg",
+      logo: "./images/companies/MBTECH.jpeg",
       role: "Data Engineer",
       at: "@ Mandelbulb Technologies",
       period: "October 2022 - September 2023",
@@ -72,7 +72,7 @@ const Experience = () => {
     },
     {
       name: "Techno Solar Power",
-      logo: "/images/companies/TSP.jpg",
+      logo: "./images/companies/TSP.jpg",
       role: "Data Engineer",
       at: "@ Techno Solar Power",
       period: "October 2020 - September 2022",

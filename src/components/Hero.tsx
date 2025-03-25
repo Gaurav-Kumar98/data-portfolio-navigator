@@ -43,7 +43,7 @@ const Hero = () => {
             variants={fadeInUp}
           >
             <img 
-              src="/Profile photo.jpg" 
+              src="./Profile photo.jpg" 
               alt="Gaurav Kumar" 
               className="w-48 h-48 rounded-full object-cover border-2 border-primary/20 shadow-lg"
             />
