@@ -1,5 +1,5 @@
 
-import { Home, User, Briefcase, Code, BarChart3, Mail, MessageSquare } from 'lucide-react';
+import { Home, User, Briefcase, Code, Mail, MessageSquare } from 'lucide-react';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import BackgroundAnimation from '@/components/BackgroundAnimation';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,6 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     { name: 'About', url: '#about', icon: User },
     { name: 'Experience', url: '#experience', icon: Briefcase },
     { name: 'Projects', url: '#projects', icon: Code },
-    { name: 'Skills', url: '#skills', icon: BarChart3 },
     { name: 'Testimonials', url: '#testimonials', icon: MessageSquare },
     { name: 'Contact', url: '#contact', icon: Mail }
   ];

@@ -35,10 +35,32 @@ const TestimonialCarousel = React.forwardRef<
       if (Math.abs(info.offset.x) > 100) {
         setExitX(info.offset.x)
         setTimeout(() => {
-          setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+          if (info.offset.x > 0) {
+            // Swiped right - go to previous
+            setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
+          } else {
+            // Swiped left - go to next
+            setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+          }
           setExitX(0)
         }, 200)
       }
+    }
+
+    const handlePrev = () => {
+      setExitX(100)
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
+        setExitX(0)
+      }, 200)
+    }
+
+    const handleNext = () => {
+      setExitX(-100)
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+        setExitX(0)
+      }, 200)
     }
 
     return (
@@ -54,9 +76,9 @@ const TestimonialCarousel = React.forwardRef<
           {testimonials.map((testimonial, index) => {
             const isCurrentCard = index === currentIndex
             const isPrevCard =
-              index === (currentIndex + 1) % testimonials.length
+              index === (currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1)
             const isNextCard =
-              index === (currentIndex + 2) % testimonials.length
+              index === (currentIndex + 1) % testimonials.length
 
             if (!isCurrentCard && !isPrevCard && !isNextCard) return null
 
@@ -96,10 +118,16 @@ const TestimonialCarousel = React.forwardRef<
               >
                 {showArrows && isCurrentCard && (
                   <div className="absolute inset-x-0 top-2 flex justify-between px-4">
-                    <span className="text-2xl select-none cursor-pointer text-gray-300 hover:text-gray-400 dark:text-muted-foreground dark:hover:text-primary">
+                    <span 
+                      className="text-2xl select-none cursor-pointer text-gray-300 hover:text-gray-400 dark:text-muted-foreground dark:hover:text-primary"
+                      onClick={handlePrev}
+                    >
                       &larr;
                     </span>
-                    <span className="text-2xl select-none cursor-pointer text-gray-300 hover:text-gray-400 dark:text-muted-foreground dark:hover:text-primary">
+                    <span 
+                      className="text-2xl select-none cursor-pointer text-gray-300 hover:text-gray-400 dark:text-muted-foreground dark:hover:text-primary"
+                      onClick={handleNext}
+                    >
                       &rarr;
                     </span>
                   </div>
@@ -127,11 +155,19 @@ const TestimonialCarousel = React.forwardRef<
                 <div
                   key={index}
                   className={cn(
-                    "w-2 h-2 rounded-full transition-colors",
+                    "w-2 h-2 rounded-full transition-colors cursor-pointer",
                     index === currentIndex
                       ? "bg-blue-500 dark:bg-primary"
                       : "bg-gray-300 dark:bg-muted-foreground/30",
                   )}
+                  onClick={() => {
+                    if (index > currentIndex) setExitX(-100);
+                    else if (index < currentIndex) setExitX(100);
+                    setTimeout(() => {
+                      setCurrentIndex(index);
+                      setExitX(0);
+                    }, 200);
+                  }}
                 />
               ))}
             </div>

@@ -68,42 +68,54 @@ const About = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-3xl mx-auto mb-16 text-center"
+          className="max-w-4xl mx-auto mb-16"
         >
-          <motion.div variants={itemVariants} className="inline-block mb-3">
-            <span className="text-sm font-medium px-4 py-1.5 rounded-full bg-primary/10 text-primary">
-              About Me
-            </span>
-          </motion.div>
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-6">
-            Passionate about transforming data into value
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-muted-foreground">
-            With 5 years of experience in data engineering, I've developed expertise in building
-            robust data pipelines, creating insightful visualizations, and implementing efficient
-            data solutions for diverse business needs.
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {services.map((service, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full border border-border/30 bg-card/50 backdrop-blur-sm card-hover">
-                <CardContent className="p-6">
-                  <div className="mb-4 rounded-full w-12 h-12 flex items-center justify-center bg-primary/10">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
-                </CardContent>
-              </Card>
+          <div className="flex flex-col md:flex-row items-center gap-10 mb-10">
+            <motion.div variants={itemVariants} className="md:w-1/3">
+              <img 
+                src="/Profile photo.jpg" 
+                alt="Profile" 
+                className="rounded-lg shadow-xl object-cover w-full max-w-[280px] h-auto" 
+              />
             </motion.div>
-          ))}
+            
+            <div className="md:w-2/3">
+              <motion.div variants={itemVariants} className="inline-block mb-3">
+                <span className="text-sm font-medium px-4 py-1.5 rounded-full bg-primary/10 text-primary">
+                  About Me
+                </span>
+              </motion.div>
+              <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-6">
+                Passionate about transforming data into value
+              </motion.h2>
+              <motion.p variants={itemVariants} className="text-lg text-muted-foreground">
+                With 5 years of experience in data engineering, I've developed expertise in building
+                robust data pipelines, creating insightful visualizations, and implementing efficient
+                data solutions for diverse business needs.
+              </motion.p>
+            </div>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {services.map((service, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="h-full border border-border/30 bg-card/50 backdrop-blur-sm card-hover">
+                  <CardContent className="p-6">
+                    <div className="mb-4 rounded-full w-12 h-12 flex items-center justify-center bg-primary/10">
+                      {service.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>

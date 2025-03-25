@@ -1,13 +1,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-
-interface TimelineItem {
-  year: string;
-  role: string;
-  company: string;
-  description: string;
-}
+import { Check } from 'lucide-react';
 
 const Experience = () => {
   const ref = useRef(null);
@@ -32,100 +26,95 @@ const Experience = () => {
     }
   };
 
-  const timelineItems: TimelineItem[] = [
+  const companies = [
     {
-      year: "2023 - Present",
-      role: "Senior Data Engineer",
-      company: "DataViz Innovations",
-      description: "Leading a team to design and implement cloud-based data solutions, optimizing data pipelines, and developing real-time analytics platforms."
+      name: "Apple",
+      logo: "🍎"
     },
     {
-      year: "2021 - 2023",
-      role: "Data Engineer",
-      company: "TechAnalytics",
-      description: "Developed and maintained ETL pipelines, optimized database performance, and created data models for business intelligence applications."
+      name: "Google",
+      logo: "🔍"
     },
     {
-      year: "2019 - 2021",
-      role: "Data Analyst",
-      company: "Insightful Research",
-      description: "Conducted data analysis, created visualizations, and developed reports to support business decision-making processes."
+      name: "Microsoft",
+      logo: "🪟"
     },
     {
-      year: "2017 - 2019",
-      role: "Junior Data Analyst",
-      company: "Data Pioneers",
-      description: "Assisted in data collection, cleaning, and basic analysis. Supported the team in developing reports and visualizations."
+      name: "Netflix",
+      logo: "🎬",
+      selected: true,
+      role: "Software Engineer Intern",
+      at: "@ Netflix",
+      period: "Jan 2021 - Jun 2021",
+      location: "Los Gatos, CA",
+      achievements: [
+        "Worked on the Netflix team",
+        "Broke the prod on the first day itself",
+        "Coined the term Netflix and Chill - which is now used by millions of people"
+      ]
     }
   ];
 
   return (
-    <section id="experience" className="section">
-      <div className="section-inner">
+    <section id="experience" className="section bg-background">
+      <div className="section-inner max-w-4xl mx-auto">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-3xl mx-auto mb-16 text-center"
+          className="mb-12"
         >
-          <motion.div variants={itemVariants} className="inline-block mb-3">
-            <span className="text-sm font-medium px-4 py-1.5 rounded-full bg-primary/10 text-primary">
-              Experience
-            </span>
-          </motion.div>
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-6">
-            My Professional Journey
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4">
+            Work Experience
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-muted-foreground">
-            Over the years, I've had the opportunity to work with various organizations,
-            each experience adding to my skill set and understanding of data engineering.
+          <motion.p variants={itemVariants} className="text-muted-foreground mb-10">
+            I switch a lot of companies. It's mostly about the culture.
           </motion.p>
-        </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          {timelineItems.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="mb-12 relative"
-            >
-              <div className="flex">
-                <div className="hidden md:block w-24 flex-shrink-0 text-sm text-muted-foreground pt-1">
-                  <motion.span variants={itemVariants}>{item.year}</motion.span>
+          <div className="flex flex-col md:flex-row gap-10">
+            {/* Companies list */}
+            <motion.div variants={itemVariants} className="flex flex-row md:flex-col gap-4 md:w-1/4">
+              {companies.map((company) => (
+                <div 
+                  key={company.name}
+                  className={`flex items-center gap-2 p-3 rounded-md ${company.selected ? 'bg-muted text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors cursor-pointer`}
+                >
+                  <span className="text-2xl">{company.logo}</span>
+                  <span className="font-medium">{company.name}</span>
                 </div>
-                
-                <div className="ml-6 relative flex-grow">
-                  {/* Timeline line */}
-                  {index < timelineItems.length - 1 && (
-                    <div className="absolute left-0 top-4 w-0.5 h-full bg-border -ml-3.5"></div>
-                  )}
-                  
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary -ml-5"></div>
-                  
-                  <motion.div variants={itemVariants} className="mb-2 md:hidden text-sm text-muted-foreground">
-                    {item.year}
-                  </motion.div>
-                  
-                  <motion.h3 variants={itemVariants} className="text-xl font-semibold mb-1">
-                    {item.role}
-                  </motion.h3>
-                  
-                  <motion.div variants={itemVariants} className="text-primary font-medium mb-3">
-                    {item.company}
-                  </motion.div>
-                  
-                  <motion.p variants={itemVariants} className="text-muted-foreground">
-                    {item.description}
-                  </motion.p>
-                </div>
-              </div>
+              ))}
             </motion.div>
-          ))}
-        </div>
+
+            {/* Selected company details */}
+            <motion.div variants={containerVariants} className="md:w-3/4">
+              {companies.filter(c => c.selected).map((company) => (
+                <div key={`details-${company.name}`}>
+                  <motion.div variants={itemVariants} className="mb-6">
+                    <h3 className="text-2xl font-bold">
+                      {company.role} <span className="text-primary">{company.at}</span>
+                    </h3>
+                    <p className="text-muted-foreground">{company.period}</p>
+                    <p className="text-muted-foreground">{company.location}</p>
+                  </motion.div>
+
+                  <motion.ul variants={containerVariants} className="space-y-2">
+                    {company.achievements.map((achievement, index) => (
+                      <motion.li 
+                        key={index}
+                        variants={itemVariants}
+                        className="flex items-start gap-2"
+                      >
+                        <Check size={18} className="text-primary mt-1" />
+                        <span>{achievement}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
